@@ -15,17 +15,18 @@ spi.max_speed_hz = 4000000
 
 t1 = time.time()
 
+responses = []
 ilist = range(1,10)
-N = len(ilist)
-responses = zeros(N, int)
+all_responses = []
 
 for i in ilist:
     n = i
     data = spi.xfer([n,0])
     n_echo = data[0]
-    responses[i-1] = n_echo
-
-#responses = concatenate((responses[1:],[responses[0]]), axis = 0)
+    responses.append(n_echo)
+    all_responses.append(data)
+    
+responses = concatenate((responses[1:],[responses[0]]), axis = 0)
 
 t2 = time.time()
  
