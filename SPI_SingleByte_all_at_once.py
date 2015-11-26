@@ -21,7 +21,7 @@ N = len(ilist)
 #responses = zeros(N, int)
 
 
-responses = spi.xfer(ilist,10)
+responses = spi.xfer(ilist,4000000,10)
 ## for i in ilist:
 ##     n = i
 ##     data = spi.xfer([n,0])
