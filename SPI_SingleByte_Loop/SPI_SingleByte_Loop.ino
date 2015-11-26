@@ -6,6 +6,7 @@ Robotics Research for Dr. Krauss
 
 int marker = 0;
 unsigned char  n; 
+int fresh = 0;
 
 void setup (void){
 	Serial.begin(115200);
@@ -24,17 +25,27 @@ void setup (void){
 }  
 
 ISR (SPI_STC_vect){
+        fresh = 1;
 	switch (marker)	{
 	case 0:
 		n = SPDR;
 		marker++;
+		fresh = 1;
 	break;
 	case 1:
 		SPDR = n*n;
 		marker=0;
+		fresh = 1;
 	break;           
 	}
 }
 
 void loop (void){
+  if (fresh > 0){
+      fresh = 0;
+      Serial.print("in fresh");
+      Serial.print(SPDR);
+      Serial.print("\n");
+    }
+  delay(10);
 }  
