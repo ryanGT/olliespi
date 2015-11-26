@@ -15,11 +15,12 @@ spi.max_speed_hz = 4000000
 
 t1 = time.time()
 
-ilist = range(1,10)
+#ilist = range(1,10)
+ilist = [1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0]
 N = len(ilist)
 #responses = zeros(N, int)
 
-ilist.append(0)
+
 responses = spi.xfer(ilist)
 ## for i in ilist:
 ##     n = i
