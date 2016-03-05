@@ -33,7 +33,7 @@ void setup (void){
   byte_counter = 0;
   
   Serial.begin(115200);
-  Serial.print("spi_polling_isr");
+  Serial.print("spi_polling_two_isrs from gmail");
   Serial.print("\n");
   
   // have to send on master in, *slave out*
