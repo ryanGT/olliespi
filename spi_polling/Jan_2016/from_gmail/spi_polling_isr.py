@@ -43,7 +43,7 @@ for i in ilist:
     poll_count = 0
     while (testbyte[0] != 1):
         poll_count += 1
-        time.sleep(sleep_time)#asking for 1/10th of millisecond
+        #time.sleep(sleep_time)#asking for 1/10th of millisecond
         (b,testbyte) = pi1.spi_read(h,1)
         ab(testbyte)
         if poll_count > 100:
