@@ -93,15 +93,16 @@ N = len(ilist)
 tpl = dt/N
 print('time per loop = %0.4g' % tpl)
 
-fd = 1.0/tpl
-print('digital update frequency = %0.4g Hz' % fd)
+if not debug:
+    fd = 1.0/tpl
+    print('digital update frequency = %0.4g Hz' % fd)
 
-test_r = array(responses)-responses[1]+1
-test_diff = test_r-arange(n-1)
+    test_r = array(responses)-responses[1]+1
+    test_diff = test_r-arange(n-1)
 
-print('='*30)
-print('test_diff = ')
-print(str(test_diff))
+    print('='*30)
+    print('test_diff = ')
+    print(str(test_diff))
 
 ## figure(1)
 ## clf()
