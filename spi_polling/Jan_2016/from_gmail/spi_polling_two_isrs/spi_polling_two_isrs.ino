@@ -8,6 +8,7 @@
 #define receivelen 5
 #define sendlen 5
 #define isrPin 7
+#define spiPin 6
 
 const byte mask = B11111000;
 int prescale = 1;
@@ -15,6 +16,7 @@ int prescale = 1;
 int n;
 int nIn;
 int nISR;
+int nspiq;
 int v1;
 int v_out;
 int echo;
@@ -29,6 +31,7 @@ uint8_t outbuffer [sendlen];
 
 void setup (void){
   nISR = 0;
+  nspiq = 0;
   fresh = 0;
   byte_counter = 0;
   
@@ -41,6 +44,9 @@ void setup (void){
   
   pinMode(isrPin, OUTPUT);
   digitalWrite(isrPin, LOW);
+
+  pinMode(spiPin, OUTPUT);
+  digitalWrite(spiPin, LOW);
   
   // turn on SPI in slave mode
   SPCR |= _BV(SPE);
@@ -76,8 +82,11 @@ ISR (SPI_STC_vect){
   // - respond with 0 until fresh happens
   // - once fresh happens, start the real data transmission
   // ? when does byte_counter get reset ?
+  digitalWrite(spiPin, HIGH);
   if (fresh == 0){
-    SPDR = fresh;
+    //SPDR = fresh;
+    SPDR = nspiq;
+    nspiq++;
     byte_counter = 0;
   }
   else{
@@ -91,8 +100,9 @@ ISR (SPI_STC_vect){
       fresh = 0;
       byte_counter = 0;
     }
-
+    nspiq = 0;
   }
+  digitalWrite(spiPin, LOW);
 }
 
 void loop (void){
