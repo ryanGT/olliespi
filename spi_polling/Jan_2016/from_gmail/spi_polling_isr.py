@@ -30,7 +30,7 @@ testbyte = 0
 sendindex_list = []
 allbytes = []
 ms = 1.0/1000
-sleep_time = 2*ms
+sleep_time = 0.1*ms
 echo_responses = []
 
 for i in ilist:
@@ -40,7 +40,7 @@ for i in ilist:
         poll_count += 1
         time.sleep(sleep_time)#asking for 1/10th of millisecond
         (b,testbyte) = pi1.spi_read(h,1)
-        if poll_count > 10:
+        if poll_count > 100:
             break
     imsb, ilsb = serial_utils.two_bytes(i) 
     pi1.spi_write(h, [imsb,ilsb])

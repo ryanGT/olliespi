@@ -23,6 +23,7 @@ int echo;
 unsigned char nlsb, nmsb, vlsb, vmsb, elsb, emsb;
 
 int isrstate=0;
+int spistate = 0;
 int byte_counter;
 int fresh;
 
@@ -82,7 +83,15 @@ ISR (SPI_STC_vect){
   // - respond with 0 until fresh happens
   // - once fresh happens, start the real data transmission
   // ? when does byte_counter get reset ?
-  digitalWrite(spiPin, HIGH);
+  //digitalWrite(spiPin, HIGH);
+   if (spistate == 0){
+      spistate=1;
+      digitalWrite(spiPin, HIGH);
+    }
+    else{
+      spistate=0;
+      digitalWrite(spiPin, LOW);
+    }
   if (fresh == 0){
     //SPDR = fresh;
     SPDR = nspiq;
@@ -102,7 +111,7 @@ ISR (SPI_STC_vect){
     }
     nspiq = 0;
   }
-  digitalWrite(spiPin, LOW);
+  //digitalWrite(spiPin, LOW);
 }
 
 void loop (void){
