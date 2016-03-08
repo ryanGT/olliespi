@@ -49,7 +49,7 @@ for i in ilist:
         if poll_count > 50:
             break
     imsb, ilsb = serial_utils.two_bytes(i) 
-    pi1.spi_write(h, ilsb)
+    #pi1.spi_write(h, ilsb)
     (b, one_check) = pi1.spi_read(h,1)
     (b, nlsb) = pi1.spi_read(h,1)
     ab(nlsb)
