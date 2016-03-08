@@ -34,22 +34,30 @@ allbytes = []
 ms = 1.0/1000
 sleep_time = 0.1*ms
 echo_responses = []
+all_bytes = []
+ab = all_bytes.append
 
 for i in ilist:
     (b,testbyte) = pi1.spi_read(h,1)
+    ab(testbyte)
     poll_count = 0
     while (testbyte[0] != 1):
         poll_count += 1
         time.sleep(sleep_time)#asking for 1/10th of millisecond
         (b,testbyte) = pi1.spi_read(h,1)
+        ab(testbyte)
         if poll_count > 100:
             break
     imsb, ilsb = serial_utils.two_bytes(i) 
     pi1.spi_write(h, [imsb,ilsb])
     (b, nlsb) = pi1.spi_read(h,1)
+    ab(nlsb)
     (b, nmsb) = pi1.spi_read(h,1)
+    ab(nmsb)
     (b, vlsb) = pi1.spi_read(h,1)
+    ab(vlsb)
     (b, vmsb) = pi1.spi_read(h,1)
+    ab(vmsb)    
     #~ cursend = pi1.spi_read(h,1)
     #~ (count, rx_data) = pi1.spi_xfer(h,[imsb, ilsb, 5, 5, 5])
     #~ print imsb, ilsb

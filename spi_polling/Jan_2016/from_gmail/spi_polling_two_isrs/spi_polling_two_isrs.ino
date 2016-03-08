@@ -84,8 +84,10 @@ ISR (SPI_STC_vect){
   // - once fresh happens, start the real data transmission
   // ? when does byte_counter get reset ?
   //digitalWrite(spiPin, HIGH);
+  digitalWrite(spiPin, HIGH);
   SPDR = nspiq;
   nspiq++;
+  digitalWrite(spiPin, LOW);
   //------------------------
   // Debugging 3/7/16
   //------------------------
