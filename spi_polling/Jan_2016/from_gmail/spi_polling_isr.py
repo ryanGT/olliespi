@@ -46,7 +46,7 @@ for i in ilist:
         #time.sleep(sleep_time)#asking for 1/10th of millisecond
         (b,testbyte) = pi1.spi_read(h,1)
         ab(testbyte)
-        if poll_count > 100:
+        if poll_count > 10:
             break
     imsb, ilsb = serial_utils.two_bytes(i) 
     pi1.spi_write(h, [imsb,ilsb])
