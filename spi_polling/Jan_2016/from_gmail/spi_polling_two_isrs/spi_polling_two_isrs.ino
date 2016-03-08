@@ -91,7 +91,8 @@ ISR (SPI_STC_vect){
     nspiq++;
   }
   else {
-    SPDR = outbuffer[byte_counter];
+    //SPDR = outbuffer[byte_counter];
+    SPDR = byte_counter;
     byte_counter++;
     if (byte_counter >= 3){
       fresh = 0;

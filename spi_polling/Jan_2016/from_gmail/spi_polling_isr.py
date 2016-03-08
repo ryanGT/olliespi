@@ -23,7 +23,7 @@ mode = 3
 h = pi1.spi_open(channel, bps, mode)
 
 #~ n = 100
-n = 10
+n = 5
 
 t1 = time.time()
 responses = []
@@ -32,7 +32,7 @@ testbyte = 0
 sendindex_list = []
 allbytes = []
 ms = 1.0/1000
-sleep_time = 0.1*ms
+sleep_time = ms
 echo_responses = []
 all_bytes = []
 ab = all_bytes.append
@@ -46,7 +46,8 @@ for i in ilist:
         #time.sleep(sleep_time)#asking for 1/10th of millisecond
         (b,testbyte) = pi1.spi_read(h,1)
         ab(testbyte)
-        if poll_count > 50:
+        if poll_count > 100:
+            print('poll_count exceeded')
             break
     imsb, ilsb = serial_utils.two_bytes(i) 
     #pi1.spi_write(h, ilsb)
