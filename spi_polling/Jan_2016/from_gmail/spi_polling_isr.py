@@ -98,9 +98,9 @@ print('='*30)
 print('test_diff = ')
 print(str(test_diff))
 
-figure(1)
-clf()
-ilist
-plot(ilist, echo_responses,'ro')
+## figure(1)
+## clf()
+## ilist
+## plot(ilist, echo_responses,'ro')
 
 show()
