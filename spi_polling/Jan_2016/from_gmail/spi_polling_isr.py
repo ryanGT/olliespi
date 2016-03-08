@@ -6,6 +6,8 @@ Before this script is run, it is necessary to start the pigpio daemon.
 Do this by: sudo pigpiod
 """
 
+print('sup, 3/7/16 10:47PM')
+
 from matplotlib.pyplot import *
 from scipy import *
 
