@@ -85,21 +85,26 @@ ISR (SPI_STC_vect){
   // ? when does byte_counter get reset ?
   //digitalWrite(spiPin, HIGH);
   //digitalWrite(spiPin, HIGH);
-  if ( fresh == 0){
-    SPDR = 0;
-    byte_counter = 0;
-    nspiq++;
-  }
-  else {
-    //SPDR = outbuffer[byte_counter];
-    SPDR = byte_counter;
-    byte_counter++;
-    if (byte_counter >= 3){
-      fresh = 0;
-      byte_counter = 0;
-      nspiq = 0;
-    }
-  }
+
+  SPDR = nspiq;
+  nspiq++;
+  
+  /* if ( fresh == 0){ */
+  /*   SPDR = 0; */
+  /*   byte_counter = 0; */
+  /*   nspiq++; */
+  /* } */
+  /* else { */
+  /*   //SPDR = outbuffer[byte_counter]; */
+  /*   SPDR = byte_counter; */
+  /*   byte_counter++; */
+  /*   if (byte_counter >= 3){ */
+  /*     fresh = 0; */
+  /*     byte_counter = 0; */
+  /*     nspiq = 0; */
+  /*   } */
+  /* } */
+  
     //SPDR = nspiq;
   //digitalWrite(spiPin, LOW);
   //------------------------
