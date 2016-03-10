@@ -37,7 +37,7 @@ void setup (void){
   byte_counter = 0;
   
   Serial.begin(115200);
-  Serial.print("spi_polling_two_isrs from gmail 3/8/16 5:11PM");
+  Serial.print("spi_polling_two_isrs from gmail 3/8/16 5:31PM");
   Serial.print("\n");
   
   // have to send on master in, *slave out*
@@ -86,7 +86,7 @@ ISR (SPI_STC_vect){
   //digitalWrite(spiPin, HIGH);
   //digitalWrite(spiPin, HIGH);
 
-  SPDR = nspiq;
+  SPDR = 7;
   nspiq++;
   
   /* if ( fresh == 0){ */
